@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "8b4f9e12-2481-484c-a61c-5e9232720f96",
+		"name": "heroku-express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "取所有資料",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://salty-cove-05005.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"salty-cove-05005",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增資料",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"marvel\",\n    \"content\":\"love story\",\n    \"type\":\"person\",\n    \"tags\":\"comice\",\n    \"likes\":222222,\n    \"image\":\"1\",\n    \"comments\":100\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://salty-cove-05005.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"salty-cove-05005",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://salty-cove-05005.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"salty-cove-05005",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://salty-cove-05005.herokuapp.com/posts/627fd173604ad803a5fd6",
+					"protocol": "https",
+					"host": [
+						"salty-cove-05005",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"627fd173604ad803a5fd6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆資料",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"content\":\"dctore\",\n \"likes\": 3333,\n  \"comments\": 1001111\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://salty-cove-05005.herokuapp.com/posts/627feb5ed8c459fa476e9926",
+					"protocol": "https",
+					"host": [
+						"salty-cove-05005",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"627feb5ed8c459fa476e9926"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
