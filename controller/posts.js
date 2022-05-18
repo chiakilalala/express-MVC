@@ -1,65 +1,65 @@
 
 const successhandle = require('../service/successhandle');
 const errorhandle = require('../service/errorhandle');
-const Posts = require('../models/posts');
-
+const Posts = require('../models/postsModel');
+const Users = require('../models/userModel');
 
 const posts ={
 
   async getPost(req,res){
-    const AllPost =  await Posts.find({});
+
+    const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
+    const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
+    const AllPost = await Posts.find(q).populate({
+          path: 'user',
+          select: 'name photo '
+          }).sort(timeSort);
+  // asc 遞增(由小到大，由舊到新) createdAt ; 
+  // desc 遞減(由大到小、由新到舊) "-createdAt"
+   
     successhandle(res,AllPost)
-  
   },
   async creatPosts(req,res,next){
     const { body } = req;
-    const { name, tags, type, image, content, likes, comments  } = body
-
-  
-    if (content && content.trim() !== '') {
-        //
-        try {
+    const { user,content  } =body;
+    console.log(user)
+    try {
+      if (user && content) {
+          const UserExist = await Users.findById(user).exec();
+        if (UserExist !== null ) {
           const newPost = await Posts.create({
-            name, tags, type, image, content, likes, comments
+            content,  user
           });
-           
           successhandle(res,newPost)
-              console.log(newPost)
-
-        } catch (err) {
-              errorhandle(res,err)
-            
-        } 
-  }else{
-        errorhandle(res);
-    }
-   
-   
+        } else {
+          errorhandle(res);
+        }
+      }else{
+       errorhandle(res);
+      }
+      } catch (err) {
+          errorhandle(res,err)
+        
+    }  
   },
   async patchPost(req,res,next){
     const id = req.params.id;
     const { body } = req;
-    const { name, tags, type, image, content, likes, comments  } = body
+    const { user,content } =body;
    
      const editContent ={
-      name, tags, type, image, content, likes, comments
+      user,content 
     };
     if(content && content.trim() !== ''){//避免輸入空白的防呆
         try {
           console.log(editContent)
           const updatePost = await Posts.findByIdAndUpdate(id,
-            editContent
-          ,
+            editContent,
           {   new: true ,// 回傳更新後的資料, default: false
-              returnDocument: 'after', //返回更新後的資料，否則為更新前的資料。
-           
+
           } 
          )
-         if (updatePost !== null){
-               successhandle(res,updatePost)
-          }else{  
-              errorhandle(res);
-          }
+         updatePost !==null ?  successhandle(res,updatePost) :errorhandle(res);
       } catch (err) {
             errorhandle(res,err)
       }      
