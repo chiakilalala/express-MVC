@@ -6,6 +6,7 @@ const successhandle = (res,data)=>{
       "status": "success",
       data
     })
+    console.log(res,data)
     res.end();
   
 }
