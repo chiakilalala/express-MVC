@@ -38,7 +38,7 @@ const posts ={
 
         } else {
           errorhandle(res);
-          console.log("沒有使用者")
+       
 
         }
       }else{
