@@ -26,18 +26,19 @@ const posts ={
     try {
       if (user && content) {
        
-          const UserExist = await Users.findById(user).exec();
+          const UserExist = await Users.findById(user);
           console.log(UserExist)
-        if (UserExist !== null ) {
+        if (UserExist ) {
         
           const newPost = await Posts.create({
             content,  user
           });
           successhandle(res,newPost)
         
+
         } else {
-          errorhandle(res,'查無使用者 ID');
-        
+          errorhandle(res);
+          console.log("沒有使用者")
 
         }
       }else{
