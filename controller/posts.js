@@ -26,11 +26,14 @@ const posts ={
     try {
       if (user && content) {
           const UserExist = await Users.findById(user).exec();
+          console.log(user,content,UserExist)
         if (UserExist !== null ) {
+          console.log(UserExist)
           const newPost = await Posts.create({
             content,  user
           });
           successhandle(res,newPost)
+          console.log(res)
         } else {
           errorhandle(res);
         }
