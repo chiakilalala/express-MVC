@@ -25,9 +25,9 @@ const posts ={
   
     try {
       if (user && content) {
-       
+       console.log(user)
           const UserExist = await Users.findById(user);
-          console.log(UserExist)
+          //console.log(UserExist)
         if (UserExist ) {
         
           const newPost = await Posts.create({
@@ -38,15 +38,16 @@ const posts ={
 
         } else {
           errorhandle(res);
-       
-
+          console.log(res)
         }
       }else{
        errorhandle(res);
       }
       } catch (err) {
+
+        
           errorhandle(res,err)
-    
+        
         
     }  
   },
