@@ -27,13 +27,13 @@ app.use(postRouter);
 app.use('/users', usersRouter);
 
 
-app.use(function (req, res, next) {
-  res.status(404).send('抱歉，您的頁面找不到');
-  console.log(req, res)
-})
+// app.use(function (req, res, next) {
+//   res.status(404).send('抱歉，您的頁面找不到');
+//   console.log(req, res)
+// })
 
-app.use(function (err, req, res, next) {
-  res.status(500).send('程式有些問題，請稍後嘗試');
-})
+// app.use(function (err, req, res, next) {
+//   res.status(500).send('程式有些問題，請稍後嘗試');
+// })
 
 module.exports = app;

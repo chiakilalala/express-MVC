@@ -6,7 +6,9 @@ const Users = require('../models/userModel');
 const User ={
   async getUsers(req,res){
       const getUser = await Users.find();
+
       successhandle(res,getUser);
+
 
   }
 };

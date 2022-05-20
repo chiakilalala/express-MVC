@@ -22,26 +22,29 @@ const posts ={
   async creatPosts(req,res,next){
     const { body } = req;
     const { user,content  } =body;
-    console.log(user)
+  
     try {
       if (user && content) {
+     console.log(user,content)
           const UserExist = await Users.findById(user).exec();
-          console.log(user,content,UserExist)
+          
         if (UserExist !== null ) {
-          console.log(UserExist)
+       
           const newPost = await Posts.create({
             content,  user
           });
           successhandle(res,newPost)
-          console.log(res)
+        
         } else {
           errorhandle(res);
+
         }
       }else{
        errorhandle(res);
       }
       } catch (err) {
           errorhandle(res,err)
+    
         
     }  
   },
@@ -85,6 +88,7 @@ const posts ={
         successhandle(res,delPost);
       }else{
         errorhandle(err)
+
       }
       } catch (err) {
           errorhandle(res,err)
