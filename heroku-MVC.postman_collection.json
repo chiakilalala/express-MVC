@@ -62,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"product\": \"奇異果多多\",\n    \"price\":25\n}",
+					"raw": " {\n            \"user\": \"62910b46dd7e8d77d6693e78\",\n            \"content\":\"去日本吃海鮮\"\n      \n        \n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,7 +70,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://boiling-crag-73032.herokuapp.com/post/628821bd26c933adb2969ff7",
+					"raw": "https://boiling-crag-73032.herokuapp.com/post/6291b092384dda0fd10f5fe4",
 					"protocol": "https",
 					"host": [
 						"boiling-crag-73032",
@@ -79,7 +79,7 @@
 					],
 					"path": [
 						"post",
-						"628821bd26c933adb2969ff7"
+						"6291b092384dda0fd10f5fe4"
 					]
 				}
 			},
@@ -130,7 +130,19 @@
 			"name": "取所有資料",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://boiling-crag-73032.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"boiling-crag-73032",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
 			},
 			"response": []
 		}
