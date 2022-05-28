@@ -1,12 +1,14 @@
 
 const successhandle = require('../service/successhandle');
 const errorhandle = require('../service/errorhandle');
+const handleErrorAsync = require('../service/handleErrorAsync');
+const appError = require('../service/appError');
 const Posts = require('../models/postsModel');
 const Users = require('../models/userModel');
 
 const posts ={
 
-  async getPost(req,res){
+ getPost:handleErrorAsync(async(req,res)=>{
 
     const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
     const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
@@ -14,11 +16,8 @@ const posts ={
           path: 'user',
           select: 'name photo '
           }).sort(timeSort);
-  // asc 遞增(由小到大，由舊到新) createdAt ; 
-  // desc 遞減(由大到小、由新到舊) "-createdAt"
-   
-    successhandle(res,AllPost)
-  },
+    successhandle(res,'資料讀取成功',AllPost)
+  }),
   async creatPosts(req,res,next){
     const { body } = req;
     const { user,content  } =body;
