@@ -21,9 +21,9 @@ const posts ={
  creatPosts:handleErrorAsync(async(req,res,next)=>{
   const { body } = req;
   const { name,content,image,user } =body;
-
+  console.log(req.body)
       if (content == undefined) {
-        console.log(req.body)
+       
         return appError(400, '沒有填寫 content 資料', next);
       }else if(user == undefined){
       
