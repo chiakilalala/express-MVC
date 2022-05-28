@@ -61,7 +61,7 @@ const posts ={
             // 可以跑 Schema 驗證規則
         } 
       )
-      successHandle(res,200,updatePost) ;
+      successhandle(res,200,updatePost) ;
     }
  }),
  deletePost:handleErrorAsync(async(req,res,next)=>{
