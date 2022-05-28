@@ -10,14 +10,18 @@ const postSchema = new mongoose.Schema({
     type: String,
     default: ""
   },
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now
   },
   content: {
     type: String,
     required: [true, 'Content 未填寫'],
-  }
+  },
+  likes: {
+    type: Number,
+    default: 0
+}
 
 }, {
   versionKey: false
