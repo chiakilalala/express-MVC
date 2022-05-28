@@ -55,11 +55,11 @@ const posts ={
     const id = req.params.id;
     const { body } = req;
     const { user,content } =body;
-    const Users = await Users.findById(user).exec();
+    const UserExist = await Users.findById(user).exec();
      const editContent ={
       user,content 
     };
-    if(Users && content && content.trim() !== ''){//避免輸入空白的防呆
+    if(UserExist && content && content.trim() !== ''){//避免輸入空白的防呆
         try {
           console.log(editContent)
 
