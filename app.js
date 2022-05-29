@@ -6,9 +6,13 @@ const cors = require('cors');
 const dotenv =require('dotenv');
 dotenv.config({path: './config.env'});
 const resError =require('./service/errorhandle');
-console.log(process.env.NODE_ENV)
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json');
+
+// console.log(process.env.NODE_ENV)
 //Router
-var indexRouter = require('./routes/index');
+
 var postRouter = require('./routes/post');
 var usersRouter = require('./routes/users');
 
@@ -25,15 +29,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 
-app.use('/index', indexRouter);
-app.use(postRouter);
+
+app.use('/',postRouter);
 app.use('/users', usersRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(function(err,req,res,next){
   //開發環境dev
   err.statusCode = err.statusCode || 500;
   if (process.env.NODE_ENV === 'dev') {
-    console.error(err);
+     console.error(err);
      return resError.resErrDev(err,res)
   } 
   //營運環境 Pro

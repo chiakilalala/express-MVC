@@ -9,6 +9,7 @@ const Users = require('../models/userModel');
 const posts ={
 
  getPost:handleErrorAsync(async(req,res)=>{
+ 
 
     const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
     const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
@@ -17,8 +18,18 @@ const posts ={
           select: 'name photo '
           }).sort(timeSort);
     successhandle(res,'資料讀取成功',AllPost)
+  /*
+   
+   * #swagger.tags = ['Posts']
+     #swagger.description = '取得全文貼文.'
+   */
  }),
  creatPosts:handleErrorAsync(async(req,res,next)=>{
+  /*
+   
+   * #swagger.tags = ['Post']
+   
+   */
   const { body } = req;
   const { name,content,image,user } =body;
   console.log(req.body)
